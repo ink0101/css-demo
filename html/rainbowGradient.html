@@ -18,8 +18,8 @@
     }
     p {
       font-size: 20vw;
-      /* color: white; */
-      color: transparent;
+      color: white;
+      /* color: transparent; */
       font-family: sans-serif;
       /* 控制文本大小写 */
       text-transform: uppercase;
@@ -53,8 +53,8 @@
       /* 设置元素的背景是否延伸到边框的下面 text：背景被裁剪为文字的前景色，只有Chrome支持（MDN）*/
       background-clip: text;
       -webkit-background-clip: text;
-      /* 为什么要使用这个属性，而不是直接设置color值为透明？ */
-      /* -webkit-text-fill-color: transparent; */
+      /* 为什么要使用这个属性，而不是直接设置color值为透明？因为通常情况下这两个属性会配合一起使用，设置color为白色可以做到向下兼容 */
+      -webkit-text-fill-color: transparent;
     }
 
     /* 定义动画效果 */
