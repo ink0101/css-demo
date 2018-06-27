@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>彩虹渐变文字</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      margin: 0px;
+      padding: 0px;
+      /* vh:相对于视口的高度。视口被均分为100单位的vh */
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: black;
+    }
+    p {
+      font-size: 20vw;
+      /* color: white; */
+      color: transparent;
+      font-family: sans-serif;
+      /* 控制文本大小写 */
+      text-transform: uppercase;
+      font-weight: 700;
+
+      /* 设置彩虹背景 */
+      /* linear-gradient() 函数用于创建一个表示两种或多种颜色线性渐变的图片 */
+      background-image: linear-gradient(
+        to right,
+        orangered,
+        orange,
+        gold,
+        lightgreen,
+        cyan,
+        dodgerblue,
+        mediumpurple,
+        hotpink,
+        orangered
+      );
+      /* 指定背景图片大小 */
+      /* 一个值：指定的是图片的宽度，图片的高度隐式设置为auto */
+      /* 注：用渐变做背景并使用background-size，最好不要只用一个auto，或者只指定一个宽度。 */
+      /* background-size: 110vw; 原方案，不推荐，为什么呢？*/
+      background-size: 110vw 110vw;
+
+      /* 动画效果 */
+      /* sliding 30s 线性 无限循环 */
+      animation: sliding 30s linear infinite;
+
+      /* 彩虹背景移动到文字下方 */
+      /* 设置元素的背景是否延伸到边框的下面 text：背景被裁剪为文字的前景色，只有Chrome支持（MDN）*/
+      background-clip: text;
+      -webkit-background-clip: text;
+      /* 为什么要使用这个属性，而不是直接设置color值为透明？ */
+      /* -webkit-text-fill-color: transparent; */
+    }
+
+    /* 定义动画效果 */
+    @keyframes sliding {
+      to {
+        background-position: -2000vw;
+      }
+    }
+  </style>
+</head>
+<body>
+  <p>thanks</p>
+</body>
+</html>
