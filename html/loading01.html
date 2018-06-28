@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>css制作文本淡入淡出的loading效果</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    /* 居中 */
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: black;
+      overflow: hidden;
+    }
+    
+    .loader {
+      /* 设置容器尺寸 */
+      width: 40em;
+      height: 3em;
+      /* 文字样式 */
+      color: dodgerblue;
+      font-size: 1.5em;
+      text-transform: uppercase;
+      font-family: sans-serif;
+
+      position: relative;
+
+      /* 添加颜色变化动画 */
+      animation: change-color 10s linear infinite;
+    }
+
+    /* 定义渐隐、旋转、移动动画 */
+    @keyframes moving {
+      0% {
+        /* 滤镜：改变透明度 */
+        filter: opacity(0);
+        transform: rotate(-180deg);
+        left: 100%;
+      }
+
+      33% {
+        filter: opacity(1);
+        transform: rotate(0deg);
+        left: 60%;
+      }
+
+      66% {
+        filter: opacity(1);
+        transform: rotate(0deg);
+        left: 40%;
+      }
+
+      100% {
+        filter: opacity(0);
+        transform: rotate(180deg);
+        left: 0;
+      }
+    }
+    /* 定义颜色变化动画 */
+    @keyframes change-color {
+      0% {
+        color: dodgerblue;
+      }
+      20% {
+        color: hotpink;
+      }
+      40% {
+        color: gold;
+      }
+      60% {
+        color: mediumpurple;
+      }
+      80% {
+        color: lightgreen;
+      }
+      100% {
+        color: dodgerblue;
+      }
+    }
+
+    /* 设置动画延时，增强动画效果 */
+    .loader span {
+      position: absolute;
+      height: 3em;
+      /* 添加动画效果 */
+      animation: moving 2s linear infinite;
+      /* 定义动画从何时开始 */
+      /* var()函数可以替代元素中任何属性中的值的任何部分 */
+      animation-delay: calc((var(--n) - 10) * 0.2s);
+      -webkit-animation-delay: calc((var(--n) - 10) * 0.2s);
+    }
+
+    .loader span:nth-child(1) {
+      --n: 1;
+    }
+    .loader span:nth-child(2) {
+      --n: 2;
+    }
+    .loader span:nth-child(3) {
+      --n: 3;
+    }
+    .loader span:nth-child(4) {
+      --n: 4;
+    }
+    .loader span:nth-child(5) {
+      --n: 5;
+    }
+    .loader span:nth-child(6) {
+      --n: 6;
+    }
+    .loader span:nth-child(7) {
+      --n: 7;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="loader">
+    <span>l</span>
+    <span>o</span>
+    <span>a</span>
+    <span>d</span>
+    <span>i</span>
+    <span>n</span>
+    <span>g</span>
+  </div>
+</body>
+</html>
