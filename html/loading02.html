@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>单元素抛盒子loading</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      /* 水平垂直居中 */
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: teal;
+      overflow: hidden;
+    }
+    .loader {
+      /* 木头 */
+      width: 6em;
+      border-bottom: 0.25em solid white;
+      font-size: 30px;
+      border-radius: 0.125em;
+      position: relative;
+      left: 1em;
+      top: 1em;
+
+      animation: throw 3s infinite;
+      /* 更改元素变形的圆点 */
+      transform-origin: 20%;
+    }
+    /* 盒子 */
+    .loader::before {
+      content: '';
+      position: absolute;
+      width: 1em;
+      height: 1em;
+      border: 0.25em solid white;
+      bottom: 0;
+      left: 0.5em;
+      border-radius: 0.25em;
+
+      animation: push 3s infinite;
+    }
+
+    /* 动画 */
+    /* 盒子爬到坡顶，然后再重爬 */
+    /* translateX 水平方向移动元素 */
+    /* translateY 垂直方向移动元素 */
+    /* rote 2d旋转 */
+    /* scale 2d缩放 */
+    @keyframes push {
+      0% {
+        transform: translateX(0) rotate(0deg);
+      }
+      5% {
+        transform: translateX(0) rotate(-5deg);
+      }
+      20%, 25% {
+        transform: translateX(1em) rotate(calc(90deg * 1 + 5deg));
+      }
+      30% {
+        transform: translateX(1em) rotate(calc(90deg * 1 - 5deg));
+      }
+      40%, 45% {
+        transform: translateX(2em) rotate(calc(90deg * 2));
+      }
+      50% {
+        transform: translateX(2em) rotate(calc(90deg * 2 - 5deg));
+      }
+      60%, 65% {
+        transform: translateX(3em) rotate(calc(90deg * 3));
+      }
+      70% {
+        transform: translateX(3em) translateY(0) rotate(calc(90deg * 3 - 5deg)) scale(1);
+        filter: opacity(1);
+      }
+      80% {
+        transform: translateX(0) translateY(-5em) rotate(-5deg) scale(0);
+        filter: opacity(0.5);
+      }
+      90% {
+        transform: translateX(0) translateY(0) rotate(0deg) scale(0);
+      }
+    }
+    @keyframes throw {
+      0%, 70%, 100% {
+        transform: rotate(-45deg);
+      }
+      80% {
+        transform: rotate(-135deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="loader"></div>
+</body>
+</html>
