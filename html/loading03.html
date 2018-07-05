@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>摇摇晃晃的loading</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: black;
+      overflow: hidden;
+    }
+    .loader {
+      width: 10em;
+      height: 10em;
+      font-size: 30px;
+      box-sizing: border-box;
+
+      /* 画出组成圆的弧线 */
+      border-top: .3em solid hotpink;
+      border-radius: 50%;
+
+      position: relative;
+
+      animation: rotating 3s ease-in-out infinite;
+      --direction: 1;
+    }
+
+    /* 使用伪元素画另外两条弧线 */
+    .loader::after, .loader::before {
+      content: '';
+      position: absolute;
+      width: inherit;
+      height: inherit;
+      border-radius: 50%;
+      box-sizing: border-box;
+      top: -.2em;
+    }
+    .loader::after {
+      border-top: .3em solid dodgerblue;
+      transform: rotate(120deg);
+    }
+    .loader::before {
+      border-top: .3em solid gold;
+      transform: rotate(240deg);
+    }
+
+    .loader span {
+      position: absolute;
+      color: white;
+      width: inherit;
+      height: inherit;
+      text-align: center;
+      line-height: 10em;
+      font-family: sans-serif;
+
+      animation: rotating 3s linear infinite;
+      /* 关于这个方向效果不太懂 */
+      --direction: -1;
+    }
+    /* 定义动画效果 */
+    @keyframes rotating {
+      50% {
+        transform: rotate(calc(180deg * var(--direction)));
+      }
+      100% {
+        transform: rotate(calc(360deg * var(--direction)));
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="loader">
+    <span>loading...</span>
+  </div>
+</body>
+</html>
