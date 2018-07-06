@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>css 制作色卡loading</title>
+</head>
+<style>
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: lightgray;
+  }
+  .cards,
+  .cards > * {
+    box-sizing: border-box;
+  }
+  .cards {
+    height: 20em;
+    width: 20em;
+  }
+  /* 色卡 */
+  .cards span {
+    position: absolute;
+    width: 10em;
+    height: 3em;
+    top: calc(50% - 3em / 2);
+    border: 0.2em solid dimgray;
+    border-radius: 0.3em 0.8em 0.8em 0.3em;
+    
+    transform-origin: right;
+    animation: rotating 3s linear infinite;
+
+    /* 用 HSL 色彩模式为色卡上色 */
+    /* 色相-饱和度-明度 模式定义颜色 */
+    background-color: hsl(calc(360 / 8 * var(--n)), 80%, 70%);
+
+    /* 设置动画延时 */
+    animation-delay: calc((var(--n) - 8) * 0.15s);
+  }
+  /* 色卡的标签 */
+  .cards span::before {
+    content: '';
+    position: absolute;
+    width: 35%;
+    height: 100%;
+    background-color: white;
+    right: 0;
+    border-radius: 0 0.6em 0.6em 0;
+    border-left: 0.2em solid silver;
+  }
+  /* 标签上的文字 */
+  .cards span::after {
+    content: '';
+    position: absolute;
+    width: 0.4em;
+    height: 2em;
+    background-color: silver;
+    left: 6.5em;
+    top: 0.1em;
+    box-shadow: 0.7em 0 0 -0.1em silver;
+  }
+  /* 设置色卡变量 */
+  .cards span:nth-child(1) {
+    --n: 1;
+  }
+  .cards span:nth-child(2) {
+    --n: 2;
+  }
+  .cards span:nth-child(3) {
+    --n: 3;
+  }
+  .cards span:nth-child(4) {
+    --n: 4;
+  }
+  .cards span:nth-child(5) {
+    --n: 5;
+  }
+  .cards span:nth-child(6) {
+    --n: 6;
+  }
+  .cards span:nth-child(7) {
+    --n: 7;
+  }
+  .cards span:nth-child(8) {
+    --n: 8;
+  }
+  /* 定义动画 */
+  @keyframes rotating {
+    0%, 35% {
+      transform: rotate(0deg);
+    }
+    90%, 100% {
+      transform: rotate(360deg);
+    }
+  }
+</style>
+<body>
+  <div class="cards">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</body>
+</html>
