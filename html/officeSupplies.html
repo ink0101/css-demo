@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>办公用品</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: darkgreen;
+    }
+    /* 容器 */
+    .desk {
+      width: 70em;
+      height: 70em;
+      font-size: 5px;
+      position: relative;
+      background-color: lightgoldenrodyellow;
+      border-radius: 6em;
+
+      --b: 1em solid darkslategray;
+    }
+    /* 定义元素共有属性 */
+    .desk * {
+      position: absolute;
+      border: var(--b);
+      box-sizing: border-box;
+    }
+
+    .desk *::before,
+    .desk *::after {
+      content: '';
+      position: absolute;
+      box-sizing: border-box;
+    }
+    /* 纸张轮廓 */
+    .paper {
+      width: 20em;
+      height: 25em;
+      color: skyblue;
+      background-color: currentColor;
+      border-radius: 0 0 0 3em;
+      top: 14em;
+      left: 6em;
+    }
+    /* 纸张卷曲的部分 */
+    .paper::before {
+      width: 3em;
+      height: 27em;
+      background-color: currentColor;
+      border: var(--b);
+      filter: saturate(150%) brightness(0.9);
+      bottom: 1.2em;
+      left: -1em;
+      border-radius: 3em 0 2.3em 0;
+    }
+    .paper::after {
+      width: 3em;
+      height: 4em;
+      background-color: currentColor;
+      border: var(--b);
+      bottom: -1em;
+      left: -1em;
+      border-radius: 2.5em 0 0 2.5em;
+      border-right: none;
+    }
+
+    /* 尺子的轮廓 */
+    .ruler {
+      width: 5em;
+      height: 20em;
+      background: linear-gradient(
+        to right,
+        peru 30%,
+        sandybrown 30%
+      );
+      top: 10em;
+      left: 15em;
+      transform: rotate(25deg);
+    }
+    
+    .ruler::before,
+    .ruler::after {
+      height: calc(100% - 3em);
+      background-image: linear-gradient(darkslategray 1em, transparent 0);
+      background-size: 4em 4em;
+    }
+    /* 尺子的长刻度线 */
+    .ruler::before {
+      width: 2em;
+      top: 1em;
+    }
+    /* 尺子的短刻度线 */
+    .ruler::after {
+      width: 1em;
+      top: 3em;
+    }
+    /* 日历的轮廓 */
+    .calender {
+      width: 24em;
+      height: 24em;
+      background: linear-gradient(coral 30%, white 30%);
+      border-radius: 2em;
+      top: 16em;
+      right: 8em;
+      transform: rotate(15deg);
+    }
+    /* 日历顶部的转轴 */
+    .calender::before {
+      width: 2em;
+      height: 3em;
+      color: sandybrown;
+      background-color: currentColor;
+      top: -2em;
+      left: 3em;
+      border-radius: 100% 100% 50% 50%;
+      box-shadow: 
+        0 0,
+        0 0 0 1em darkslategray,
+        15em 0,
+        15em 0 0 1em darkslategrey;
+    }
+    /* 日历上的日期 */
+    .calender::after {
+      width: 3em;
+      height: 3em;
+      color: silver;
+      background-color: silver;
+      top: 8em;
+      left: 2em;
+      border-radius: 0.4em;
+      /* ??? */
+      box-shadow: 
+        0 0, 5em 0, 10em 0, 15em 0,
+        0 5em, 5em 5em, 10em 5em, 15em 5em,
+        0 10em, 5em 10em, 10em 10em, 15em 10em;
+    }
+    /* 笔记本轮廓 */
+    .notebook {
+      width: 23em;
+      height: 30em;
+      background: linear-gradient(
+        to right,
+        tomato 12%,
+        coral 12%, coral 64%,
+        darkslategray 64%, darkslategray 68%,
+        sandybrown 68%, sandybrown 80%,
+        darkslategray 80%, darkslategray 84%,
+        coral 84%
+      );
+      border-radius: 3em;
+      bottom: 10em;
+      left: 16em;
+    }
+    /* 笔记本底部 */
+    .notebook::before {
+      width: inherit;
+      height: 5em;
+      background-color: white;
+      border: var(--b);
+      bottom: -1em;
+      left: -1em;
+      border-radius: 3em 0 3em 3em;
+    }
+    /* 笔记本书签 */
+    .notebook::after {
+      width: 4em;
+      height: 5em;
+      background-color: coral;
+      border: var(--b);
+      bottom: -3em;
+      left: 4em;
+      border-top: none;
+      border-radius: 0 0 1em 1em;
+    }
+    /* 铅笔的轮廓 */
+    .pencil {
+      width: 6em;
+      height: 12em;
+      background: linear-gradient(
+        coral 20%,
+        darkslategray 20%, darkslategray 25%,
+        sandybrown 25%
+      );
+      border-radius: 0.8em;
+      bottom: 16em;
+      right: 16em;
+      transform: rotate(-35deg);
+    }
+    /* 铅笔尖 */
+    .pencil::before {
+      border: 3em solid transparent;
+      border-top-color: darkslategray;
+      bottom: -6.5em;
+      left: -1em;
+    }
+    .pencil::after {
+      border: 2em solid transparent;
+      border-top-color: sandybrown;
+      bottom: -4.5em;
+      left: 0;
+    }
+    /* 鼠标增加悬停效果 */
+    .desk * {
+      transition: 1s;
+    }
+    .desk:hover .paper {
+      top: 6em;
+      left: 2em;
+    }
+    .desk:hover .ruler {
+      top: 3em;
+      left: 50%;
+      transform: rotate(0);
+    }
+    .desk:hover .calender {
+      top: 3em;
+      right: 2em;
+      transform: rotate(0);
+    }
+    .desk:hover .notebook {
+      bottom: 3em;
+      left: 2em;
+    }
+    .desk:hover .pencil {
+      bottom: 3em;
+      right: 2em;
+      transform: rotate(180deg);
+    }
+    /* 设置文字样式 */
+    .desk p {
+      border: none;
+      color: darkslategray;
+      font-size: 14em;
+      font-weight: bold;
+      font-family: sans-serif;
+      text-align: center;
+      bottom: 2em;
+      right: 1em;
+
+      transform: rotate(-35deg) scale(0);
+    }
+    /* 文字慢慢浮现 */
+    .desk:hover p {
+      transform: rotate(-35deg) scale(1);
+    }
+  </style>
+</head>
+<body>
+  <div class="desk">
+    <span class="paper"></span>
+    <span class="ruler"></span>
+    <span class="notebook"></span>
+    <span class="calender"></span>
+    <span class="pencil"></span>
+    <p>Hey!<br>Take it easy!</p>
+  </div>
+</body>
+</html>
